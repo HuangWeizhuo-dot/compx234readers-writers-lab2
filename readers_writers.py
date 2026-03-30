@@ -55,7 +55,9 @@ class ReadersWritersMonitor:
         """
         with self.condition:
             # TODO: Replace 'pass' with your logic
-            pass
+            while self.active_writers> 0:
+                self.condition.wait()
+                self.active_readers+=1
 
     def end_read(self, reader_id: int) -> None:
         """
