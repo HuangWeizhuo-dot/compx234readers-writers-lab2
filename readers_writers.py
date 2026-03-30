@@ -169,23 +169,28 @@ def main() -> None:
 
     #TODO: Create at least 3 Reader threads.
     readers = [
-        Reader(reader_id=1, monitor=monitor)
+        Reader(reader_id=1, monitor=monitor)for i in range(1,4)
     ]
     
     #TODO: Create at least 2 writer threads.
     writers = [
-        Writer(writer_id=1, monitor=monitor)
+        Writer(writer_id=1, monitor=monitor)for i in range(1,3)
     ]
 
     all_threads = readers + writers
     
     # TODO: Start all threads
+    for thread in all_threads:
+        thread.start()
 
     
     # TODO: Wait for all threads to finish
+    for thread in all_threads:
+        thread.join()
 
 
     # TODO: Print final message that simulation completed
+    print("\nAll readers and writers have finished execution")
 
 
 if __name__ == "__main__":
